@@ -28,18 +28,19 @@
 //--------------------------Voltear la cadena------------------------
 
 
-let nombre1 = "Laura Aline";
-    nombre1 = nombre1.toUpperCase();
+
 
     function invertircadena(nombre1) {
 
          let letrasinvertidas = "";
         
-        for (let i = nombre1.length;  i >= 0; i++) {
+        for (let i = nombre1.length-1;  i >= 0; i--) {
     
-         letrasinvertidas+= nombre1.charAT(i);
+         letrasinvertidas += nombre1.charAt(i);
         }
         
-       return console.log(letrasinvertidas);
-
+       return letrasinvertidas;
 }
+
+//--------------Ejercicio3--------------------
+
