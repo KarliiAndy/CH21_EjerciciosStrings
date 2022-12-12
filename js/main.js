@@ -25,18 +25,18 @@
 
 
 
-//--------------------------Voltear la cadena------------------------
+//--------------------------Voltear letras en una  cadena------------------------
 
 
 
 
-    function invertircadena(nombre1) {
+    function invertircadena(str) {
 
          let letrasinvertidas = "";
         
-        for (let i = nombre1.length-1;  i >= 0; i--) {
+        for (let i = str.length-1;  i >= 0; i--) {
     
-         letrasinvertidas += nombre1.charAt(i);
+         letrasinvertidas += str.charAt(i);
         }
         
        return letrasinvertidas;
@@ -44,3 +44,13 @@
 
 //--------------Ejercicio3--------------------
 
+            function palin(str) {
+
+                str = str.toLowerCase();
+
+                if (invertircadena(str) == str){
+                return true;
+            }
+            
+            return false;
+            }
