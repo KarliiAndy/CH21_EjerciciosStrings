@@ -57,12 +57,16 @@
 
 
 
-
+//-----------------Ejercicio REGEX y validaciones -----------------------------------
 
 
     let btnEnviar = document.getElementById("btnEnviar");
     btnEnviar.addEventListener ("click" , function(event) {
         event.preventDefault()
+
+        let validos = 0;
+
+
         let emailRegex= /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         
         let exampleFormControlInput1 = document.getElementById("exampleFormControlInput1");
@@ -84,16 +88,44 @@
             alertError.style.display = "block";
             exampleFormControlTextarea1.focus();
             exampleFormControlTextarea1.select();
-        }
+            exampleFormControlTextarea1.style.border = "solid red 1px" // color rojo al no estar correcto
+            } else {
+        exampleFormControlTextarea1.style.border = "solid green 1px" // color verde al  estar correcto
+            validos ++;
+        } //else
+
         if (exampleFormControlInput1.value.match(emailRegex) == null){
             alertError.style.display="block";
             alertError.innerHTML += "<br/> El correo electronico no es válido";
-        }
+            exampleFormControlInput1.style.border = "solid red 1px" // color rojo al no estar correcto
+        } else {
+            exampleFormControlInput1.style.border = "solid green 1px" // color verde al  estar correcto
+            validos ++;
+        } //else
+
         
-        let RFCRegex= / /;
+        let RFCRegex= /^[A-Z]{4}[0-9]{6}[A-Z0-9]{3}/; //indica primero que son 4 letras , 6 numeros entre 0-9
+        exampleFormControlInput2.value = exampleFormControlInput2.value.toUpperCase();
+       
         if (exampleFormControlInput2.value.match(RFCRegex) == null){
             alertError.style.display="block";
             alertError.innerHTML += "<br/> El RFC no es válido";
-        }
+            exampleFormControlInput2.style.border = "solid red 1px" // color rojo al no estar correcto
+        } else {
+            exampleFormControlInput2.style.border = "solid green 1px" // color verde al  estar correcto
+            validos ++;
+        } //else
+        
 
+        if ((idTimeout!=undefined) && (idTimeout!=null)){
+            clearTimeout(idTimeout);
+        } //idtimeout
+
+        if (validos == 3){
+           idTimeout =  setTimeout(function(){
+                exampleFormControlTextarea1.style.border ="";
+                exampleFormControlInput1.style.border ="";
+                exampleFormControlInput2.style.border ="";
+            } , 3000);
+        } //==3 
     });
