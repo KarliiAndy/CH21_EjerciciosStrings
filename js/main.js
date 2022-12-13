@@ -60,19 +60,21 @@
 //-----------------Ejercicio REGEX y validaciones -----------------------------------
 
 
-    let btnEnviar = document.getElementById("btnEnviar");
-    btnEnviar.addEventListener ("click" , function(event) {
-        event.preventDefault()
+     let btnEnviar = document.getElementById("btnEnviar");
+     btnEnviar.addEventListener ("click" , function(event) {
+     event.preventDefault()
 
-        let validos = 0;
+         let validos = 0;
+         let idTimeout;
 
 
-        let emailRegex= /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+     let emailRegex= /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         
-        let exampleFormControlInput1 = document.getElementById("exampleFormControlInput1");
-        let exampleFormControlInput2 = document.getElementById("exampleFormControlInput2");
-        let exampleFormControlTextarea1= document.getElementById("exampleFormControlTextarea1");
-        let alertError = document.getElementById("alertError");
+     let exampleFormControlInput1 = document.getElementById("exampleFormControlInput1");
+     let exampleFormControlInput2 = document.getElementById("exampleFormControlInput2");
+     let exampleFormControlTextarea1= document.getElementById("exampleFormControlTextarea1");
+    let flexCheckDefault = document.getElementById("flexCheckDefault");
+    let alertError = document.getElementById("alertError");
 
         exampleFormControlTextarea1.value = exampleFormControlTextarea1.value.trim();
 
@@ -90,7 +92,7 @@
             exampleFormControlTextarea1.select();
             exampleFormControlTextarea1.style.border = "solid red 1px" // color rojo al no estar correcto
             } else {
-        exampleFormControlTextarea1.style.border = "solid green 1px" // color verde al  estar correcto
+            exampleFormControlTextarea1.style.border = "solid green 1px" // color verde al  estar correcto
             validos ++;
         } //else
 
@@ -121,6 +123,16 @@
             clearTimeout(idTimeout);
         } //idtimeout
 
+
+        alertError.innerHTML += (! flexCheckDefault.checked)?
+        "<br/>Debes aceptar los términos y condiciones" :"";
+
+        //     console.log(flexCheckDefault.checked);
+        // if ( ! flexCheckDefault.checked) {
+        //      alertError.innerHTML += "<br/> Debes aceptar los términos y condiciones";
+        //     }
+
+
         if (validos == 3){
            idTimeout =  setTimeout(function(){
                 exampleFormControlTextarea1.style.border ="";
@@ -129,3 +141,4 @@
             } , 3000);
         } //==3 
     });
+
